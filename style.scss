@@ -1,0 +1,1277 @@
+// Colors for different elements in the theme, including backgrounds, buttons, text, and borders.
+$white-color:                  #ffffff;
+$primary-color:                #BC6C25;
+$secondary-color:              #DDA15E;
+$section-bg-color:             #b78752;
+$custom-btn-bg-color:          #BC6C25;
+$custom-btn-bg-hover-color:    #DDA15E;
+$dark-color:                   #000000;
+$p-color:                      #717275;
+$border-color:                 #7fffd4;
+$link-hover-color:             #E76F51;
+
+// Font family used for all body text in the theme.
+$body-font-family:             'Plus Jakarta Sans', sans-serif;
+
+// Specifies font sizes for different text elements like headings, paragraphs, buttons, and menus.
+$h1-font-size:                 68px;
+$h2-font-size:                 46px;
+$h3-font-size:                 32px;
+$h4-font-size:                 28px;
+$h5-font-size:                 24px;
+$h6-font-size:                 22px;
+$p-font-size:                  20px;
+$btn-font-size:                16px;
+$form-btn-font-size:           18px;
+$menu-font-size:               16px;
+
+// Sets border radius sizes for different levels of roundness: large, medium, and small.
+$border-radius-large:          100px;
+$border-radius-medium:         20px;
+$border-radius-small:          10px;
+
+// Defines font weights for text, ranging from light to bold.
+$font-weight-thin:             200;
+$font-weight-light:            300;
+$font-weight-normal:           400;
+$font-weight-bold:             700;
+
+// Applies the background color and font style to the whole page.
+body {
+  background-color: $white-color;
+  font-family: $body-font-family; 
+}
+/*---------------------------------------
+  TYPOGRAPHY               
+-----------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold);
+
+  & + * {
+    color: var(--dark-color);
+  }
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+h4 {
+  font-size: var(--h4-font-size);
+}
+
+h5 {
+  font-size: var(--h5-font-size);
+}
+
+h6 {
+  font-size: var(--h6-font-size);
+}
+
+p,
+ul li {
+  color: var(--p-color);
+  font-size: var(--p-font-size);
+  font-weight: var(--font-weight-light);
+}
+
+a,
+button {
+  touch-action: manipulation;
+  transition: all 0.3s;
+
+  // Shared styles for both 'a' and 'button' can go here
+}
+
+a {
+  display: inline-block;
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/*---------------------------------------
+  SECTION               
+-----------------------------------------*/
+
+// General section padding
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+// Section background
+.section-bg {
+  background-color: var(--section-bg-color);
+}
+
+// Section overlay with dark background and absolute positioning
+.section-overlay {
+  background-color: var(--dark-color);
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+
+  // Ensure that the container above the overlay is positioned correctly
+  + .container {
+    position: relative;
+    z-index: 22;
+  }
+}
+
+// Back to top icon styling
+.back-top-icon {
+  font-size: var(--h2-font-size);
+}
+
+/*---------------------------------------
+  TIMELINE               
+-----------------------------------------*/
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: var(--white-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+  }
+}
+
+.timeline-container {
+  padding: 10px 40px;
+  padding-top: 0;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12px;
+    background-color: var(--white-color);
+    border: 5px solid #7c5c52;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  &.timeline-container-left {
+    left: 0;
+
+    &::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 9px;
+      width: 0;
+      z-index: 1;
+      right: 25px;
+      border: medium solid white;
+      border-width: 20px 0 20px 20px;
+      border-color: transparent transparent transparent white;
+    }
+  }
+
+  &.timeline-container-right {
+    left: 50%;
+
+    &::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 9px;
+      width: 0;
+      z-index: 1;
+      left: 25px;
+      border: medium solid white;
+      border-width: 20px 20px 20px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    &::after {
+      left: -13px;
+    }
+  }
+}
+
+.timeline-content {
+  padding: 5px;
+  background-color: var(--white-color);
+  position: relative;
+  border-radius: var(--border-radius-medium);
+}
+
+@media screen and (max-width: 991px) {
+  .timeline {
+    &::after {
+      left: 31px;
+    }
+  }
+
+  .timeline-container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+
+    &::before {
+      left: 58px;
+      border: medium solid white;
+      border-width: 20px 20px 20px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    &.timeline-container-left,
+    &.timeline-container-right {
+      &::after {
+        left: 6px;
+      }
+    }
+
+    &.timeline-container-right {
+      left: 0%;
+    }
+  }
+}
+
+/*---------------------------------------
+  CUSTOM BUTTON               
+-----------------------------------------*/
+
+.custom-btn {
+  background: var(--custom-btn-bg-color);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-large);
+  color: var(--white-color);
+  font-size: var(--btn-font-size);
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
+  transition: all 0.3s;
+  padding: 12px 28px;
+
+  &:hover {
+    background: var(--custom-btn-bg-hover-color);
+    color: var(--white-color);
+  }
+}
+
+.custom-border-btn {
+  background: transparent;
+  border: 2px solid var(--white-color);
+  color: var(--white-color);
+
+  &:hover {
+    background: var(--white-color);
+    color: var(--secondary-color);
+  }
+}
+
+.custom-btn-bg-white {
+  border-color: var(--white-color);
+  color: var(--white-color);
+}
+
+.custom-btn-italic {
+  font-style: italic;
+}
+
+/*---------------------------------------
+  NAVIGATION BAR & OFFCANVAS              
+-----------------------------------------*/
+
+.sticky-wrapper {
+  position: absolute;
+  z-index: 999999;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  &.is-sticky {
+    .container {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: var(--border-radius-medium);
+      padding: 15px 30px;
+    }
+  }
+}
+
+.navbar {
+  background: transparent;
+  z-index: 999999;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .container {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: var(--border-radius-medium);
+    padding: 15px 30px;
+  }
+
+  .navbar-brand,
+  .navbar-brand:hover {
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-bold);
+    display: block;
+    color: var(--white-color);
+  }
+
+  .navbar-brand-image {
+    width: 48px;
+    height: auto;
+    margin-right: 10px;
+    filter: brightness(0) invert(1);
+  }
+
+  .custom-btn {
+    padding: 10px 20px;
+  }
+
+  .navbar-expand-lg {
+    .navbar-nav {
+      .nav-link {
+        border-radius: var(--border-radius-large);
+        margin: 10px;
+        padding: 10px;
+        display: inline-block;
+        color: var(--white-color);
+        font-size: var(--menu-font-size);
+        font-weight: var(--font-weight-bold);
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        &.active,
+        &:hover {
+          color: var(--secondary-color);
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    background: var(--white-color);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+    border: 0;
+    display: inherit;
+    opacity: 0;
+    min-width: 9rem;
+    margin-top: 20px;
+    padding: 13px 0 10px 0;
+    transition: all 0.3s;
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 15px solid var(--white-color);
+      position: absolute;
+      top: -10px;
+      left: 10px;
+    }
+  }
+
+  .dropdown-item {
+    display: inline-block;
+    color: var(--p-color);
+    font-size: var(--menu-font-size);
+    font-weight: var(--font-weight-medium);
+    position: relative;
+
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+      background: transparent;
+      color: var(--link-hover-color);
+    }
+  }
+
+  .dropdown-toggle::after {
+    content: "\f282";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-size: var(--menu-font-size);
+    font-style: normal;
+    font-weight: normal !important;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: -.125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    left: 2px;
+    border: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .navbar {
+    .dropdown:hover {
+      .dropdown-menu {
+        opacity: 1;
+        margin-top: 0;
+        pointer-events: auto;
+      }
+    }
+  }
+}
+
+.navbar-toggler {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  width: 30px;
+  height: 35px;
+  outline: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &[aria-expanded="true"] {
+    .navbar-toggler-icon {
+      background: transparent;
+
+      //to create transitions and transformations, and are nested within .navbar-toggler-icon.
+      &::before,
+      &::after {
+        transition: top 300ms 50ms ease, transform 300ms 350ms ease;
+        top: 0;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+// Styles for .navbar-toggler-icon when the menu is expanded
+  .navbar-toggler-icon {
+    background: var(--white-color);
+    transition: background 10ms 300ms ease;
+    display: block;
+    width: 30px;
+    height: 2px;
+    position: relative;
+  }
+}
+
+//Styles for .navbar-toggler-icon are placed inside .navbar-toggler to show they are part of it.
+.navbar-toggler {
+  .navbar-toggler-icon {
+    position: relative;
+    width: 30px;
+    height: 2px;
+    background: var(--white-color);
+
+    //::before and ::after are included to show where they belong
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: var(--white-color);
+      width: 30px;
+      height: 2px;
+      transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      top: 8px;
+    }
+  }
+}
+
+/*---------------------------------------
+  HERO        
+-----------------------------------------*/
+//The media query for .hero-section is nested inside it to keep related styles together.
+.hero-section {
+  background-color: var(--dark-color);
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  text-align: center;
+
+  //Adds a semi-transparent, dark, rotated rectangle overlay centered within the element.
+  &::after {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-radius: var(--border-radius-medium);
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-55%, -50%) rotate(45deg);
+    width: 250px;
+    height: 350px;
+    pointer-events: none;
+  }
+
+  // Sets the height to 100vh for screens wider than 991px
+  @media screen and (min-width: 991px) {
+    height: 100vh;
+  }
+
+  h1 {
+    color: var(--white-color);
+  }
+
+  .small-text {
+    color: var(--secondary-color);
+  }
+
+  .custom-border-btn {
+    border-color: transparent;
+  }
+
+  .container {
+    position: relative;
+    z-index: 9;
+  }
+
+  .hero-slides {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+  }
+}
+
+.opening-hours-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: var(--btn-font-size);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 10px;
+
+    .underline {
+      background-color: rgba(255, 255, 255, 0.75);
+      width: 35%;
+      height: 1px;
+      margin: auto 15px 0;
+    }
+  }
+}
+
+/*---------------------------------------
+  ABOUT               
+-----------------------------------------*/
+//Styles the about section with a secondary color background and positions it relative to its container.
+.about-section {
+  background-color: var(--secondary-color);
+  position: relative;
+
+// Applies medium border-radius to ratio containers, custom videos, and image wraps for consistent rounded corners.
+  .ratio,
+  .custom-video,
+  .about-image-wrap {
+    border-radius: var(--border-radius-medium);
+  }
+
+// Ensures the custom video covers its container completely, maintaining aspect ratio
+  .custom-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-image-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+// Adds a gradient background, medium border-radius, and padding to the video info section.
+  .about-video-info {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1));
+    border-radius: var(--border-radius-medium);
+    bottom: 0;
+    height: auto;
+    padding: 40px;
+
+    h4 {
+      color: var(--white-color);
+    }
+  }
+
+  h6 {
+    color: var(--secondary-color);
+  }
+
+// Styles team block with color, rounded corners, max height, and pointer cursor.
+  .team-block-wrap {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius-medium);
+    position: relative;
+    overflow: hidden;
+    max-height: 450px;
+    cursor: pointer;
+
+    &:hover .team-block-image {
+      transform: scale(1.2);
+    }
+
+    .team-block-image-wrap {
+      width: 100%;
+
+      .team-block-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s;
+      }
+    }
+
+    .team-block-info {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1));
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 30px;
+
+      .badge {
+        margin: auto;
+        top: 2px;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+/*---------------------------------------
+  OUR MENU               
+-----------------------------------------*/
+
+//styles for the .menu-section class
+.menu-section {
+  background-image: url('../images/happy-waitress-giving-coffee-customers-while-serving-them-coffee-shop.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//Container for the menu block with a semi-transparent black background and rounded corners
+.menu-block-wrap {
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: var(--border-radius-medium);
+  padding: 45px;
+
+  //Styles for the inner menu block
+  .menu-block {
+
+    //styling for the top border with a light color
+    .border-top {
+      border-top-color: rgba(255, 255, 255, 0.35) !important;
+    }
+
+    //Styling for heading text
+    h6 {
+      color: var(--white-color);
+    }
+
+    //Styling for small text
+    small {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    //Styling for emphasized text 
+    strong {
+      color: var(--secondary-color);
+    }
+  }
+}
+
+//Circular image with fixed size, centered, and clickable
+.menu-block-image {
+  border-radius: 100%;
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  cursor: pointer;
+}
+
+//Badge with primary color background, small font size, and slight bottom offset
+.badge {
+  background-color: var(--primary-color);
+  font-size: 12px;
+  position: relative;
+  bottom: 4px;
+  padding-bottom: 6px;
+
+//Decorative triangle positioned to the left of the element
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--primary-color);
+  }
+}
+
+/*---------------------------------------
+  REVIEWS               
+-----------------------------------------*/
+
+ // Background color for the entire reviews section
+.reviews-section {
+  background-color: #7c5c52;
+}
+
+// Background color and border radius for each review block
+.reviews-block {
+  background-color: var(--section-bg-color);
+  border-radius: var(--border-radius-medium);
+  position: relative;
+  overflow: hidden;
+
+   // Top border styling for the review block
+  .border-top {
+    border-top-color: rgba(255, 255, 255, 0.35) !important;
+  }
+}
+
+// Background image and styling for the review block's image wrapper
+.reviews-block-image-wrap {
+  background-image: url('../images/mid-section-waitress-wiping-espresso-machine-with-napkin-cafa-c.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 30px;
+}
+
+// Styling for individual images within the review block
+.reviews-block-image {
+  border-radius: var(--border-radius-large);
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+ // Padding for the text content in the review block
+.reviews-block-info {
+  padding: 20px 30px;
+
+   // Styling for paragraphs within the review block info
+  p {
+    font-size: var(--btn-font-size);
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+// Styling for icons within the reviews group
+.reviews-group {
+  i {
+    color: var(--white-color);
+  }
+}
+/*---------------------------------------
+  BOOKING SECTION               
+-----------------------------------------*/
+
+.booking-section {
+  // Background image and positioning for the booking section
+  background-image: url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.booking-form-wrap {
+  // Background color and border radius for the booking form wrapper
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: var(--border-radius-medium);
+  position: relative;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.booking-form {
+  // Padding for the booking form
+  padding: 55px 65px;
+}
+
+.booking-form-image-wrap {
+  // Relative positioning and full height for the image wrapper
+  position: relative;
+  height: 100%;
+}
+
+.booking-form-image {
+  // Image styling to cover the container
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.booking-form-text {
+  span {
+    // Styling for span elements within the booking form text
+    color: var(--white-color);
+    font-size: var(--btn-font-size);
+  }
+}
+
+.reservation-page {
+  // Custom border button styles within the reservation page
+  .custom-border-btn {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+}
+/*---------------------------------------
+  CONTACT SECTION               
+-----------------------------------------*/
+
+.contact-section {
+  // Background image with gradient overlay for the contact section
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(188, 108, 37, 1)
+  ), url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.google-map {
+  // Styling for Google map iframe or container
+  border-radius: var(--border-radius-medium);
+  filter: grayscale(100%);
+}
+
+.contact-block-wrap {
+  // Background and styling for the contact block wrapper
+  background: var(--primary-color);
+  border-radius: var(--border-radius-medium);
+  padding: 0;
+  min-height: 200px;
+}
+
+.contact-block {
+  // Background and styling for individual contact blocks
+  background: var(--secondary-color);
+  border-radius: var(--border-radius-medium);
+  transform: rotate(8deg);
+  height: 100%;
+  padding: 20px 40px;
+
+  // Rotated heading within contact block
+  h6 {
+    transform: rotate(-8deg);
+  }
+
+  // Custom icon styling within the contact block
+  .custom-icon {
+    background: var(--primary-color);
+    border-radius: var(--border-radius-large);
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    position: relative;
+  }
+
+  // Strong tag styling within the contact block
+  strong {
+    display: block;
+    color: var(--white-color);
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+/*---------------------------------------
+  CUSTOM FORM               
+-----------------------------------------*/
+
+.custom-form {
+  // General form control styling
+  .form-control {
+    color: var(--p-color);
+    border-radius: var(--border-radius-small);
+    margin-bottom: 30px;
+    padding: 13px 0; // Combining padding-top and padding-bottom
+    box-shadow: none;
+    outline: none;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      background: var(--primary-color);
+      border-color: transparent;
+    }
+  }
+
+  // Label styling within the custom form
+  .form-label {
+    color: var(--white-color);
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+
+  // Submit button styling
+  button[type="submit"] {
+    background: var(--custom-btn-bg-color);
+    border: none;
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    font-size: var(--form-btn-font-size);
+    font-weight: var(--font-weight-bold);
+    transition: all 0.3s;
+    margin-bottom: 0;
+
+    &:hover,
+    &:focus {
+      background: var(--white-color);
+      border-color: transparent;
+      color: var(--primary-color);
+    }
+  }
+
+  // Placeholder styling for input and textarea
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: var(--white-color);
+  }
+  
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: var(--white-color);
+  }
+}
+
+// Additional form control styling specific to contact and booking forms
+.contact-form,
+.booking-form {
+  .form-control {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.25);
+
+    // Override color for booking form
+    &.booking-form {
+      color: var(--white-color);
+    }
+  }
+}
+
+/*---------------------------------------
+  SITE FOOTER               
+-----------------------------------------*/
+
+$primary-color: yourPrimaryColor; // Define your primary color here
+$white-color: #ffffff; // Define your white color here
+$btn-font-size: 16px; // Define your button font size here
+$menu-font-size: 14px; // Define your menu font size here
+
+.site-footer {
+  background-color: $primary-color;
+  padding: 100px 0; // Padding top and bottom can be combined
+
+  strong {
+    color: $white-color;
+  }
+
+  p,
+  .site-footer-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: $btn-font-size;
+  }
+
+  .site-footer-link {
+    transition: all 0.3s;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: underline;
+    }
+  }
+
+  .copyright-text {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: $menu-font-size;
+
+    a {
+      color: rgba(255, 200, 160, 0.75);
+    }
+  }
+}
+
+/*---------------------------------------
+  SOCIAL ICON               
+-----------------------------------------*/
+
+/* Define constants for social icon styling */
+$social-icon-size: 35px; // Size of social icon links
+$transition-duration: 0.2s; // Duration for transition effects
+
+/* Styles for the container of social icons */
+.social-icon {
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles for individual social icon list items */
+.social-icon-item {
+  list-style: none; // Remove default list styling
+  display: inline-block; // Align icons horizontally
+  vertical-align: top; // Align items to the top
+}
+
+/* Styles for social icon links */
+.social-icon-link {
+  background: var(--primary-color); // Background color of the icon
+  border-radius: var(--border-radius-large); // Rounded corners
+  color: var(--white-color); // Text color
+  font-size: var(--menu-font-size); // Font size
+  display: block; // Block display for the link
+  margin: 0 5px; // Horizontal margin between icons
+  text-align: center; // Center text inside the icon
+  width: $social-icon-size; // Fixed width
+  height: $social-icon-size; // Fixed height
+  line-height: $social-icon-size; // Vertically center text
+  transition: background $transition-duration, color $transition-duration; // Smooth background and color transitions
+
+  &:hover {
+    background: var(--white-color); // Background color on hover
+    color: var(--primary-color); // Text color on hover
+  }
+
+  span {
+    display: block; // Ensure span takes full width of the link
+  }
+}
+
+/*---------------------------------------
+  RESPONSIVE STYLES               
+-----------------------------------------*/
+
+/* Styles for screens 1200px wide and below */
+@media screen and (max-width: 1200px) {
+  h1 {
+    font-size: 62px;
+  }
+}
+
+/* Styles for screens 991px wide and below */
+@media screen and (max-width: 991px) {
+  h1 {
+    font-size: 54px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 28px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-size: 18px;
+  }
+
+  .section-padding {
+    padding: 50px 0; // Top and bottom padding
+  }
+
+  .hero-section {
+    padding: 148px 0 100px; // Top and bottom padding
+  }
+
+  .navbar-brand,
+  .navbar-brand:hover {
+    font-size: var(--h5-font-size); // Use a CSS variable for font size
+  }
+
+  .navbar-expand-lg {
+    .navbar-nav {
+      padding-bottom: 20px;
+    }
+
+    .navbar-nav .nav-link {
+      padding: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .navbar .custom-btn {
+    margin-bottom: 10px;
+  }
+
+  .booking-form {
+    padding: 45px;
+  }
+
+  .contact-section {
+    .container {
+      width: auto;
+      margin: 0 10px; // Horizontal margin
+      padding: 35px;
+    }
+  }
+
+  .site-footer {
+    padding: 50px 0; // Top and bottom padding
+  }
+}
+
+/* Styles for screens 767px wide and below */
+@media screen and (max-width: 767px) {
+  .custom-btn {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .menu-block-wrap,
+  .reviews-block-image-wrap,
+  .reviews-block-info {
+    padding: 20px;
+  }
+}
+
+/* Styles for screens 578px wide and below */
+@media screen and (max-width: 578px) {
+  .navbar .container,
+  .sticky-wrapper.is-sticky .container {
+    margin: 0 10px; // Horizontal margin
+  }
+}
+
+/* Styles for screens 480px wide and below */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 26px;
+  }
+
+  h4 {
+    font-size: 22px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  .hero-section::after {
+    width: 200px;
+    height: 200px;
+  }
+
+  .booking-form {
+    padding: 35px;
+  }
+
+  .opening-hours-list {
+    li {
+      font-size: 12px;
+    }
+  }
+
+  .reviews-block-image-wrap {
+    flex-direction: column;
+  }
+
+  .reviews-block-image {
+    margin-bottom: 15px;
+  }
+
+  .timeline-container {
+    padding-left: 55px;
+
+    &::before {
+      left: 44px;
+      border: medium solid white;
+      border-width: 15px 15px 15px 0;
+      border-color: transparent white transparent transparent;
+    }
+  }
+
+  .timeline-container-left::before,
+  .timeline-container-right::before {
+    top: 13px;
+  }
+}
+
+
+
+
